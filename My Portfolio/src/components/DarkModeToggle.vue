@@ -16,8 +16,9 @@
 
 <script setup>
 import { useThemeStore } from "../stores/theme";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
+const checked = ref(false);
 const themeStore = useThemeStore();
 const isDarkMode = computed(() => themeStore.isDarkMode);
 
@@ -54,9 +55,9 @@ const moonStyle = computed(() => ({
 }
 
 .sun__icon {
-  color: #9cafaa;
+  color: #ffd35a;
 }
 .moon__icon {
-  color: #e7f0dc;
+  color: #987d9a;
 }
 </style>

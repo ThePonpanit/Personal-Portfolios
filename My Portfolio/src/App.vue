@@ -1,22 +1,13 @@
 <template>
   <header class="app__main-header">
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="80"
-      height="80"
-    />
-
-    <div class="wrapper"></div>
-    <div class="card">
+    <div class="app__card">
       <Menubar :model="items" />
+    </div>
+    <div>
+      <DarkModeToggle />
     </div>
   </header>
   <body>
-    <div style="display: flex; justify-content: right">
-      <DarkModeToggle />
-    </div>
     <RouterView />
   </body>
 </template>
@@ -83,9 +74,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
   background-color: #f8f9fa;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
+  -moz-box-shadow: 3px 3px 10px 3px #dddddd;
+  box-shadow: 3px 3px 10px 3px #dddddd;
+  padding: 1vh;
 }
 /* Set app__main-header sticky to the screen*/
 .app__main-header {
@@ -98,6 +92,6 @@ body {
 <style>
 body.app-dark {
   background-color: #121212;
-  color: #ffffff;
+  color: #f8f9fa;
 }
 </style>
