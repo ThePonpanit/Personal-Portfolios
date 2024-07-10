@@ -10,13 +10,13 @@
 
     <div class="wrapper"></div>
   </header>
-  <DarkModeButton />
+  <DarkModeToggle />
   <RouterView />
 </template>
 
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import DarkModeButton from "./components/DarkModeButton.vue";
+import DarkModeToggle from "./components/DarkModeToggle.vue";
 </script>
 
 <style scoped></style>
