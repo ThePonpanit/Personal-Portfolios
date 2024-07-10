@@ -8,6 +8,7 @@ import router from "./router";
 
 // PrimeVue Configuration
 import PrimeVue from "primevue/config";
+import "primeicons/primeicons.css";
 import Aura from "@primevue/themes/aura";
 import { definePreset } from "@primevue/themes";
 
@@ -33,6 +34,7 @@ const CustomAura = definePreset(Aura, {
 // PrimeVue Components import
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
+import Menubar from "primevue/menubar";
 
 // Create the Vue app
 const app = createApp(App);
@@ -58,6 +60,7 @@ app.use(router);
 // Register PrimeVue Components globally
 app.component("Button", Button);
 app.component("InputText", InputText);
+app.component("Menubar", Menubar);
 
 // Mount the app to the DOM
 app.mount("#app");
