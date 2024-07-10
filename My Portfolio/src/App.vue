@@ -1,15 +1,16 @@
 <template>
-  <header class="app__main-header">
-    <div class="app__card">
-      <Menubar :model="items" />
-    </div>
-    <div>
-      <DarkModeToggle />
-    </div>
+  <header>
+    <Menubar :model="items">
+      <template #end>
+        <DarkModeToggle />
+      </template>
+    </Menubar>
   </header>
-  <body>
-    <RouterView />
-  </body>
+  <main>
+    <div>
+      <RouterView />
+    </div>
+  </main>
 </template>
 
 <script setup>
@@ -66,23 +67,12 @@ const items = ref([
 </script>
 
 <style scoped>
-body {
+main {
   height: 500vh;
 }
 
-.app__main-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f8f9fa;
-  border-radius: 20px;
-  -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
-  -moz-box-shadow: 3px 3px 10px 3px #dddddd;
-  box-shadow: 3px 3px 10px 3px #dddddd;
-  padding: 1vh;
-}
 /* Set app__main-header sticky to the screen*/
-.app__main-header {
+header {
   position: sticky;
   top: 0;
   z-index: 1000;
