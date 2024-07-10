@@ -9,18 +9,19 @@
         role="switch"
         name="theme"
         value="dark"
+        @change="toggleDarkMode"
       />
       <span class="theme__fill"></span>
       <span class="theme__icon">
-        <span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span
-        ><span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
+        <span class="theme__icon-part"></span>
       </span>
     </span>
     <span>Dark</span>
@@ -28,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const isDarkMode = ref(false);
 
@@ -41,6 +42,11 @@ const toggleDarkMode = () => {
     element.classList.remove("app-dark");
   }
 };
+
+// Watch the `isDarkMode` to apply the class when the state changes
+watch(isDarkMode, (newValue) => {
+  toggleDarkMode();
+});
 </script>
 
 <style scoped>
