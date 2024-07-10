@@ -1,32 +1,32 @@
 <template>
-  <label for="theme" class="theme">
-    <span>Light</span>
-    <span class="theme__toggle-wrap">
-      <input
-        type="checkbox"
-        class="theme__toggle"
-        id="theme"
-        role="switch"
-        name="theme"
-        value="dark"
-        @change="toggleDarkMode"
-        :checked="isDarkMode"
-      />
-      <span class="theme__fill"></span>
-      <span class="theme__icon">
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
-        <span class="theme__icon-part"></span>
+  <div class="theme__toggle_container">
+    <strong style="margin-bottom: 0.15rem">Theme Toggle</strong>
+    <label for="theme" class="theme">
+      <span class="theme__toggle-wrap">
+        <input
+          type="checkbox"
+          class="theme__toggle"
+          id="theme"
+          role="switch"
+          name="theme"
+          value="dark"
+          @change="toggleDarkMode"
+        />
+        <span class="theme__fill"></span>
+        <span class="theme__icon">
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+          <span class="theme__icon-part"></span>
+        </span>
       </span>
-    </span>
-    <span>Dark</span>
-  </label>
+    </label>
+  </div>
 </template>
 
 <script setup>
@@ -35,35 +35,52 @@ import { ref, watch, onMounted } from "vue";
 const isDarkMode = ref(false);
 
 const toggleDarkMode = () => {
+  isDarkMode.value = !isDarkMode.value;
+};
+
+onMounted(() => {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    isDarkMode.value = true;
+  }
+});
+
+// Watch the `isDarkMode` to apply the class when the state changes
+watch(isDarkMode, (newValue) => {
   const element = document.documentElement;
-  if (isDarkMode.value) {
+  if (newValue) {
     element.classList.add("app-dark");
   } else {
     element.classList.remove("app-dark");
   }
-};
-
-// Watch the `isDarkMode` to apply the class when the state changes
-watch(isDarkMode, (newValue) => {
-  toggleDarkMode();
-});
-
-// Initialize the mode based on initial value
-onMounted(() => {
-  toggleDarkMode();
 });
 </script>
 
-<style>
+<style scoped>
 * {
   border: 0;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+.theme__toggle_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  border-radius: 20px;
+  -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
+  -moz-box-shadow: 3px 3px 10px 3px #dddddd;
+  box-shadow: 3px 3px 10px 3px #dddddd;
+}
+</style>
+
+<style>
 :root {
   --hue: 223;
-  --bg: hsl(var(--hue), 10%, 100%);
+  --bg: hsl(40, 20%, 94%);
   --fg: hsl(var(--hue), 10%, 0%);
   --primary: hsl(var(--hue), 90%, 55%);
   --primaryT: hsla(var(--hue), 90%, 55%, 0);
@@ -76,19 +93,12 @@ body {
 }
 body,
 input {
-  font: 1em / 1.5 Fredoka, sans-serif;
+  font: 0.5rem / 1.5 Fredoka, sans-serif;
 }
 body {
   color: var(--fg);
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  transition: background-color var(--transDur), color var(--transDur);
 }
-body.app-dark {
-  --bg: hsl(var(--hue), 10%, 10%);
-  --fg: hsl(var(--hue), 10%, 90%);
-}
+/* Default */
 .theme {
   display: flex;
   align-items: center;
@@ -118,10 +128,10 @@ body.app-dark {
 }
 .theme__icon {
   display: block;
-  top: 0.75em;
-  left: 0.75em;
-  width: 1.5em;
-  height: 1.5em;
+  top: 0.75em; /* Adjust icon position */
+  left: 0.75em; /* Adjust icon position */
+  width: 1.5em; /* Adjust icon size */
+  height: 1.5em; /* Adjust icon size */
 }
 .theme__icon-part {
   border-radius: 50%;
@@ -180,8 +190,8 @@ body.app-dark {
   border-radius: 25% / 50%;
   box-shadow: 0 0 0 0.125em var(--primaryT);
   padding: 0.25em;
-  width: 6em;
-  height: 3em;
+  width: 6em; /* Adjust width */
+  height: 3em; /* Adjust height */
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
@@ -192,8 +202,8 @@ body.app-dark {
   background-color: hsl(48, 90%, 55%);
   border-radius: 50%;
   content: "";
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.5em; /* Adjust inner circle size */
+  height: 2.5em; /* Adjust inner circle size */
   transition: background-color var(--transDur) ease-in-out,
     transform var(--transDur) ease-in-out;
 }

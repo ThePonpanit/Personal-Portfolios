@@ -8,27 +8,3 @@
 body {
   font-family: "Prompt", sans-serif;
 }
-
-:root,
-.app-dark {
-  --transition-duration: 0.25s;
-  --transition-timing-function: ease;
-  --background-color: white;
-  --text-color: black;
-  transition: background-color var(--transition-duration)
-      var(--transition-timing-function),
-    color var(--transition-duration) var(--transition-timing-function);
-}
-
-.app-dark {
-  --background-color: black;
-  --text-color: white;
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  transition: background-color var(--transition-duration)
-      var(--transition-timing-function),
-    color var(--transition-duration) var(--transition-timing-function);
-}

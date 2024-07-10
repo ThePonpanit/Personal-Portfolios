@@ -10,7 +10,9 @@
 
     <div class="wrapper"></div>
   </header>
-  <DarkModeToggle />
+  <div style="display: flex; justify-content: right">
+    <DarkModeToggle />
+  </div>
   <RouterView />
 </template>
 
