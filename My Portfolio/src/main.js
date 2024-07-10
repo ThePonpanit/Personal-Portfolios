@@ -9,9 +9,30 @@ import router from "./router";
 // PrimeVue Configuration
 import PrimeVue from "primevue/config";
 import Aura from "@primevue/themes/aura";
+import { definePreset } from "@primevue/themes";
+
+// Define a custom preset based on Aura with custom primary color
+const CustomAura = definePreset(Aura, {
+  semantic: {
+    primary: {
+      50: "{indigo.50}",
+      100: "{indigo.100}",
+      200: "{indigo.200}",
+      300: "{indigo.300}",
+      400: "{indigo.400}",
+      500: "{indigo.500}",
+      600: "{indigo.600}",
+      700: "{indigo.700}",
+      800: "{indigo.800}",
+      900: "{indigo.900}",
+      950: "{indigo.950}",
+    },
+  },
+});
 
 // PrimeVue Components import
 import Button from "primevue/button";
+import InputText from "primevue/inputtext";
 
 // Create the Vue app
 const app = createApp(App);
@@ -19,11 +40,11 @@ const app = createApp(App);
 // PrimeVue theme configuration
 app.use(PrimeVue, {
   theme: {
-    preset: Aura,
+    preset: CustomAura,
     options: {
-      prefix: "p", // Default prefix for CSS variables
-      darkModeSelector: "system", // Use system dark mode settings
-      cssLayer: false, // Disable CSS layer by default
+      prefix: "p",
+      darkModeSelector: ".app-dark",
+      cssLayer: false,
     },
   },
 });
@@ -36,6 +57,7 @@ app.use(router);
 
 // Register PrimeVue Components globally
 app.component("Button", Button);
+app.component("InputText", InputText);
 
 // Mount the app to the DOM
 app.mount("#app");
