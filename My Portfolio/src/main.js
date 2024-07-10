@@ -35,6 +35,7 @@ const CustomAura = definePreset(Aura, {
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import Menubar from "primevue/menubar";
+import ToggleSwitch from "primevue/toggleswitch";
 
 // Create the Vue app
 const app = createApp(App);
@@ -61,6 +62,7 @@ app.use(router);
 app.component("Button", Button);
 app.component("InputText", InputText);
 app.component("Menubar", Menubar);
+app.component("ToggleSwitch", ToggleSwitch);
 
 // Mount the app to the DOM
 app.mount("#app");

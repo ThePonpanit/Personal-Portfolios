@@ -94,3 +94,10 @@ body {
   z-index: 1000;
 }
 </style>
+
+<style>
+body.app-dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+</style>
