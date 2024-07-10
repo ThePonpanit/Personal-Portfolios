@@ -1,15 +1,18 @@
 <template>
-  <div class="dark-mode-toggle toggle__main">
-    <div :style="sunStyle" class="sun__icon">
-      <i class="pi pi-sun" style="font-weight: 600; font-size: 1.25rem"></i>
-    </div>
-    <ToggleSwitch
-      v-model="checked"
-      :checked="isDarkMode"
-      @change="toggleDarkMode"
-    />
-    <div :style="moonStyle" class="moon__icon">
-      <i class="pi pi-moon" style="font-weight: 600; font-size: 1.25rem"></i>
+  <div>
+    <div>Toggle Themes</div>
+    <div class="dark-mode-toggle toggle__main">
+      <div :style="sunStyle" class="sun__icon">
+        <i class="pi pi-sun" style="font-weight: 600; font-size: 1.25rem"></i>
+      </div>
+      <ToggleSwitch
+        v-model="checked"
+        :checked="isDarkMode"
+        @change="toggleDarkMode"
+      />
+      <div :style="moonStyle" class="moon__icon">
+        <i class="pi pi-moon" style="font-weight: 600; font-size: 1.25rem"></i>
+      </div>
     </div>
   </div>
 </template>

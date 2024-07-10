@@ -36,6 +36,7 @@ import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import Menubar from "primevue/menubar";
 import ToggleSwitch from "primevue/toggleswitch";
+import Avatar from "primevue/avatar";
 
 // Create the Vue app
 const app = createApp(App);
@@ -63,6 +64,7 @@ app.component("Button", Button);
 app.component("InputText", InputText);
 app.component("Menubar", Menubar);
 app.component("ToggleSwitch", ToggleSwitch);
+app.component("Avatar", Avatar);
 
 // Mount the app to the DOM
 app.mount("#app");

@@ -1,8 +1,13 @@
 <template>
-  <header>
+  <header class="app__header">
     <Menubar :model="items">
       <template #end>
-        <DarkModeToggle />
+        <div style="display: flex">
+          <DarkModeToggle />
+          <span style="margin-left: 2rem">
+            <Avatar label="P" class="mr-2" size="large" shape="circle" />
+          </span>
+        </div>
       </template>
     </Menubar>
   </header>
