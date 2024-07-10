@@ -1,53 +1,29 @@
 <template>
-  <label class="switch">
-    <input
-      class="switch__input"
-      type="checkbox"
-      role="switch"
-      @change="toggleDarkMode"
-      :checked="isDarkMode"
-    />
-    <svg
-      class="switch__icon switch__icon--light"
-      viewBox="0 0 12 12"
-      width="12px"
-      height="12px"
-      aria-hidden="true"
-    >
-      <g fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round">
-        <circle cx="6" cy="6" r="2" />
-        <g stroke-dasharray="1.5 1.5">
-          <polyline points="6 10,6 11.5" transform="rotate(0,6,6)" />
-          <polyline points="6 10,6 11.5" transform="rotate(45,6,6)" />
-          <polyline points="6 10,6 11.5" transform="rotate(90,6,6)" />
-          <polyline points="6 10,6 11.5" transform="rotate(135,6,6)" />
-          <polyline points="6 10,6 11.5" transform="rotate(180,6,6)" />
-          <polyline points="6 10,6 11.5" transform="rotate(225,6,6)" />
-          <polyline points="6 10,6 11.5" transform="rotate(270,6,6)" />
-          <polyline points="6 10,6 11.5" transform="rotate(315,6,6)" />
-        </g>
-      </g>
-    </svg>
-    <svg
-      class="switch__icon switch__icon--dark"
-      viewBox="0 0 12 12"
-      width="12px"
-      height="12px"
-      aria-hidden="true"
-    >
-      <g
-        fill="none"
-        stroke="#fff"
-        stroke-width="1"
-        stroke-linejoin="round"
-        transform="rotate(-45,6,6)"
-      >
-        <path
-          d="m9,10c-2.209,0-4-1.791-4-4s1.791-4,4-4c.304,0,.598.041.883.105-.995-.992-2.367-1.605-3.883-1.605C2.962.5.5,2.962.5,6s2.462,5.5,5.5,5.5c1.516,0,2.888-.613,3.883-1.605-.285.064-.578.105-.883.105Z"
-        />
-      </g>
-    </svg>
-    <span class="switch__sr">Dark Mode</span>
+  <label for="theme" class="theme">
+    <span>Light</span>
+    <span class="theme__toggle-wrap">
+      <input
+        type="checkbox"
+        class="theme__toggle"
+        id="theme"
+        role="switch"
+        name="theme"
+        value="dark"
+      />
+      <span class="theme__fill"></span>
+      <span class="theme__icon">
+        <span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span
+        ><span class="theme__icon-part"></span>
+      </span>
+    </span>
+    <span>Dark</span>
   </label>
 </template>
 
@@ -76,141 +52,186 @@ const toggleDarkMode = () => {
 }
 :root {
   --hue: 223;
-  --bg: hsl(var(--hue), 10%, 90%);
-  --fg: hsl(var(--hue), 10%, 10%);
-  --primary: hsl(var(--hue), 90%, 50%);
-  --trans-dur: 0.3s;
-  --trans-timing: cubic-bezier(0.76, 0.05, 0.24, 0.95);
-  --trans-timing-in: cubic-bezier(0.76, 0.05, 0.86, 0.06);
-  --trans-timing-out: cubic-bezier(0.05, 0.76, 0.06, 0.86);
+  --bg: hsl(var(--hue), 10%, 100%);
+  --fg: hsl(var(--hue), 10%, 0%);
+  --primary: hsl(var(--hue), 90%, 55%);
+  --primaryT: hsla(var(--hue), 90%, 55%, 0);
+  --transDur: 0.3s;
+  font-size: calc(16px + (32 - 16) * (100vw - 320px) / (1280 - 320));
+}
+html,
+body {
+  background-color: var(--bg);
 }
 body,
 input {
-  color: var(--fg);
-  font: 1em/1.5 sans-serif;
-  transition: background-color var(--trans-dur), color var(--trans-dur);
+  font: 1em / 1.5 Fredoka, sans-serif;
 }
 body {
-  background-color: var(--bg);
-  display: flex;
+  color: var(--fg);
   height: 100vh;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 }
-body.app-dark {
-  --bg: hsl(var(--hue), 10%, 10%);
-  --fg: hsl(var(--hue), 10%, 90%);
-}
-.switch {
-  margin: auto;
-  position: relative;
+/* Default */
+.theme {
   display: flex;
   align-items: center;
-  gap: 0.5em;
-}
-.switch__icon,
-.switch__input {
-  display: block;
-}
-.switch__icon {
-  transition: opacity calc(var(--trans-dur) / 2),
-    transform calc(var(--trans-dur) / 2);
-}
-.switch__icon--light,
-.switch__icon--light polyline {
-  transition-delay: calc(var(--trans-dur) / 2);
-  transition-timing-function: var(--trans-timing-out);
-}
-.switch__icon--dark {
-  opacity: 0;
-  transform: translateX(-0.75em) rotate(30deg) scale(0.75);
-  transition-timing-function: var(--trans-timing-in);
-}
-.switch__input {
-  background-color: hsl(210, 90%, 70%);
-  border-radius: 0.75em;
-  box-shadow: 0 0 0 0.125em hsla(var(--hue), 90%, 50%, 0),
-    0.125em 0.125em 0.25em hsla(var(--hue), 90%, 10%, 0.2);
-  outline: transparent;
-  position: relative;
-  width: 3em;
-  height: 1.5em;
-  -webkit-appearance: none;
-  appearance: none;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color var(--trans-dur) var(--trans-timing),
-    box-shadow 0.15s linear;
 }
-.switch__input:focus-visible {
-  box-shadow: 0 0 0 0.125em hsl(var(--hue), 90%, 50%),
-    0.125em 0.125em 0.25em hsla(var(--hue), 90%, 10%, 0.2);
+.theme__fill,
+.theme__icon {
+  pointer-events: none;
+  transition: transform var(--transDur) ease-in-out;
 }
-.switch__input:before,
-.switch__input:after {
-  content: "";
+.theme__fill {
+  background-color: var(--bg);
   display: block;
-  position: absolute;
-}
-.switch__input:before {
-  background-color: hsl(50, 90%, 50%);
-  border-radius: inherit;
-  mask-image: linear-gradient(
-    120deg,
-    hsl(0, 0%, 0%) 20%,
-    hsla(0, 0%, 0%, 0) 80%
-  );
-  -webkit-mask-image: linear-gradient(
-    120deg,
-    hsl(0, 0%, 0%) 20%,
-    hsla(0, 0%, 0%, 0) 80%
-  );
+  mix-blend-mode: difference;
+  position: fixed;
   inset: 0;
-  transition: background-color var(--trans-dur) var(--trans-timing);
+  height: 100%;
+  transform: translateX(-100%);
 }
-.switch__input:after {
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 50%;
-  box-shadow: 0.05em 0.05em 0.05em hsla(var(--hue), 90%, 10%, 0.1);
-  top: 0.125em;
-  left: 0.125em;
-  width: 1.25em;
-  height: 1.25em;
-  transition: background-color var(--trans-dur) var(--trans-timing),
-    transform var(--trans-dur) var(--trans-timing);
+.theme__icon,
+.theme__toggle {
   z-index: 1;
 }
-.switch__input:checked {
-  background-color: hsl(290, 90%, 40%);
-}
-.switch__input:checked:before {
-  background-color: hsl(220, 90%, 40%);
-}
-.switch__input:checked:after {
-  background-color: hsl(0, 0%, 0%);
-  transform: translateX(1.5em);
-}
-.switch__input:checked ~ .switch__icon--light,
-.switch__input:checked ~ .switch__icon--light polyline {
-  transition-delay: 0s;
-  transition-timing-function: var(--trans-timing-in);
-}
-.switch__input:checked ~ .switch__icon--light {
-  opacity: 0;
-  transform: translateX(-0.75em) rotate(-30deg) scale(0.75);
-}
-.switch__input:checked ~ .switch__icon--light polyline {
-  stroke-dashoffset: 1.5;
-}
-.switch__input:checked ~ .switch__icon--dark {
-  opacity: 1;
-  transform: translateX(-1.5em);
-  transition-delay: calc(var(--trans-dur) / 2);
-  transition-timing-function: var(--trans-timing-out);
-}
-.switch__sr {
-  overflow: hidden;
+.theme__icon,
+.theme__icon-part {
   position: absolute;
-  width: 1px;
-  height: 1px;
+}
+.theme__icon {
+  display: block;
+  top: 0.75em;
+  left: 0.75em;
+  width: 1.5em;
+  height: 1.5em;
+}
+.theme__icon-part {
+  border-radius: 50%;
+  box-shadow: 0.4em -0.4em 0 0.5em hsl(0, 0%, 100%) inset;
+  top: calc(50% - 0.5em);
+  left: calc(50% - 0.5em);
+  width: 1em;
+  height: 1em;
+  transition: box-shadow var(--transDur) ease-in-out,
+    opacity var(--transDur) ease-in-out, transform var(--transDur) ease-in-out;
+  transform: scale(0.5);
+}
+.theme__icon-part ~ .theme__icon-part {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 0.05em;
+  box-shadow: none;
+  top: 50%;
+  left: calc(50% - 0.05em);
+  transform: rotate(0) translateY(0.5em);
+  transform-origin: 50% 0;
+  width: 0.1em;
+  height: 0.2em;
+}
+.theme__icon-part:nth-child(3) {
+  transform: rotate(45deg) translateY(0.5em);
+}
+.theme__icon-part:nth-child(4) {
+  transform: rotate(90deg) translateY(0.5em);
+}
+.theme__icon-part:nth-child(5) {
+  transform: rotate(135deg) translateY(0.5em);
+}
+.theme__icon-part:nth-child(6) {
+  transform: rotate(180deg) translateY(0.5em);
+}
+.theme__icon-part:nth-child(7) {
+  transform: rotate(225deg) translateY(0.5em);
+}
+.theme__icon-part:nth-child(8) {
+  transform: rotate(270deg) translateY(0.5em);
+}
+.theme__icon-part:nth-child(9) {
+  transform: rotate(315deg) translateY(0.5em);
+}
+.theme__label,
+.theme__toggle,
+.theme__toggle-wrap {
+  position: relative;
+}
+.theme__toggle,
+.theme__toggle::before {
+  display: block;
+}
+.theme__toggle {
+  background-color: hsl(48, 90%, 85%);
+  border-radius: 25% / 50%;
+  box-shadow: 0 0 0 0.125em var(--primaryT);
+  padding: 0.25em;
+  width: 6em;
+  height: 3em;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: background-color var(--transDur) ease-in-out,
+    box-shadow 0.15s ease-in-out, transform var(--transDur) ease-in-out;
+}
+.theme__toggle::before {
+  background-color: hsl(48, 90%, 55%);
+  border-radius: 50%;
+  content: "";
+  width: 2.5em;
+  height: 2.5em;
+  transition: background-color var(--transDur) ease-in-out,
+    transform var(--transDur) ease-in-out;
+}
+.theme__toggle:focus {
+  box-shadow: 0 0 0 0.125em var(--primary);
+  outline: transparent;
+}
+/* Checked */
+.theme__toggle:checked {
+  background-color: hsl(198, 90%, 15%);
+}
+.theme__toggle:checked::before,
+.theme__toggle:checked ~ .theme__icon {
+  transform: translateX(3em);
+}
+.theme__toggle:checked::before {
+  background-color: hsl(198, 90%, 55%);
+}
+.theme__toggle:checked ~ .theme__fill {
+  transform: translateX(0);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(1) {
+  transform: scale(1);
+  box-shadow: 0.2em -0.2em 0 0.2em hsl(0, 0%, 100%) inset;
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part ~ .theme__icon-part {
+  opacity: 0;
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(2) {
+  transform: rotate(45deg) translateY(0.8em);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(3) {
+  transform: rotate(90deg) translateY(0.8em);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(4) {
+  transform: rotate(135deg) translateY(0.8em);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(5) {
+  transform: rotate(180deg) translateY(0.8em);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(6) {
+  transform: rotate(225deg) translateY(0.8em);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(7) {
+  transform: rotate(270deg) translateY(0.8em);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(8) {
+  transform: rotate(315deg) translateY(0.8em);
+}
+.theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(9) {
+  transform: rotate(360deg) translateY(0.8em);
+}
+.theme__toggle-wrap {
+  margin: 0 0.75em;
 }
 </style>
