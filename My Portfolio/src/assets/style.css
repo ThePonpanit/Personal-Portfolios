@@ -6,9 +6,21 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+* {
+  font-family: "Prompt", sans-serif;
   font-weight: normal;
 }
 
+/* Light themes */
 body {
-  font-family: "Prompt", sans-serif;
+  background-color: rgb(249, 246, 238); /* Light background color */
+  color: rgb(52, 52); /* Dark text color for contrast */
+}
+
+/* Dark themes */
+body.app-dark {
+  background-color: rgb(3, 21, 37);
+  color: rgb(211, 227, 253);
 }

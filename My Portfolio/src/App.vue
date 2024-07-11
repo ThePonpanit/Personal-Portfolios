@@ -1,7 +1,4 @@
 <template>
-  <div class="text-3xl text-center mt-5">
-    Hello World , I am using TailWindCss
-  </div>
   <header class="app__header">
     <Menubar :model="items">
       <template #end>
@@ -17,7 +14,7 @@
     </Menubar>
   </header>
   <main>
-    <div>
+    <div class="mt-5 flex justify-center align-middle">
       <RouterView />
     </div>
   </main>
@@ -86,12 +83,5 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-</style>
-
-<style>
-body.app-dark {
-  background-color: #121212;
-  color: #f8f9fa;
 }
 </style>
