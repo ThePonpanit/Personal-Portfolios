@@ -1,4 +1,4 @@
-import "./assets/styles.css"; // Import your CSS file
+import "./assets/style.css"; // Import your CSS file
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
@@ -37,6 +37,8 @@ import InputText from "primevue/inputtext";
 import Menubar from "primevue/menubar";
 import ToggleSwitch from "primevue/toggleswitch";
 import Avatar from "primevue/avatar";
+import Badge from "primevue/badge";
+import OverlayBadge from "primevue/overlaybadge";
 
 // Create the Vue app
 const app = createApp(App);
@@ -65,6 +67,8 @@ app.component("InputText", InputText);
 app.component("Menubar", Menubar);
 app.component("ToggleSwitch", ToggleSwitch);
 app.component("Avatar", Avatar);
+app.component("Badge", Badge);
+app.component("OverlayBadge", OverlayBadge);
 
 // Mount the app to the DOM
 app.mount("#app");

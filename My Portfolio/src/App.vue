@@ -1,11 +1,16 @@
 <template>
+  <div class="text-3xl text-center mt-5">
+    Hello World , I am using TailWindCss
+  </div>
   <header class="app__header">
     <Menubar :model="items">
       <template #end>
         <div style="display: flex">
           <DarkModeToggle />
           <span style="margin-left: 2rem">
-            <Avatar label="P" class="mr-2" size="large" shape="circle" />
+            <OverlayBadge severity="danger">
+              <Avatar label="P" size="large" />
+            </OverlayBadge>
           </span>
         </div>
       </template>
